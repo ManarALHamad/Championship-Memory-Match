@@ -14,10 +14,8 @@
     { name: 'Saheel',                  img: 'assets/saheel.png',    emoji: '🐴' },
     { name: 'Water bottle',            img: 'assets/water.png',     emoji: '💧' },
     { name: 'Bahrain pin',             img: 'assets/pin.png',       emoji: '📍' },
-    { name: 'Championship trophy',     img: 'assets/Trophy.png',    emoji: '🏆' },
     { name: 'BPC emblem',              img: 'assets/bpclogo.png',   emoji: '🔥' },
     { name: 'World Para Powerlifting', img: 'assets/WORLD.png',     emoji: '🏋️' },
-    { name: 'Championship logo',       img: 'assets/logo.png',      emoji: '🏅' },
     { name: 'Bahrain branding',        img: 'assets/branding.png', emoji: '🇧🇭' }
   ];
   // ----------------------------------------------
@@ -94,7 +92,7 @@
     return seconds.toFixed(1) + 's';
   }
 
-  // Score rewards speed and few attempts. A perfect game uses 8 attempts.
+  // Score rewards speed and few attempts. A perfect game uses one attempt per pair.
   function calcScore(seconds, tries) {
     const extraTries = Math.max(0, tries - PAIRS);
     return Math.max(0, Math.round(1000 - seconds * 8 - extraTries * 25));
