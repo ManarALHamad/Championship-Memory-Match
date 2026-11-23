@@ -1,11 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfect Lift Challenge</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Championship Memory Match</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+  <main class="app">
+    <header class="masthead">
+      <img id="logo" class="logo" src="assets/logo.png" alt="Championship logo">
+      <div>
+        <h1>Championship Memory Match</h1>
+        <p class="tagline">Match all 8 pairs. Fast hands, few misses.</p>
+      </div>
+    </header>
+
+    <section class="stats" aria-live="polite">
+      <div class="stat"><span class="stat-label">Time</span><span id="time" class="stat-value">0.0s</span></div>
+      <div class="stat"><span class="stat-label">Attempts</span><span id="attempts" class="stat-value">0</span></div>
+      <div class="stat"><span class="stat-label">Pairs</span><span id="pairs" class="stat-value">0/8</span></div>
+      <div class="stat"><span class="stat-label">Best score</span><span id="best" class="stat-value">–</span></div>
+    </section>
+
+    <section id="board" class="board" aria-label="Memory cards"></section>
+
+    <button id="restart" class="btn btn-ghost" type="button">New game</button>
+  </main>
+
+  <div id="winModal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="winTitle">
+    <div class="modal-box">
+      <img id="winLogo" class="modal-logo" src="assets/logo.png" alt="">
+      <h2 id="winTitle">Champion!</h2>
+      <p id="newBest" class="new-best" hidden>New best score</p>
+      <dl class="results">
+        <div><dt>Score</dt><dd id="finalScore">0</dd></div>
+        <div><dt>Time</dt><dd id="finalTime">0.0s</dd></div>
+        <div><dt>Attempts</dt><dd id="finalAttempts">0</dd></div>
+      </dl>
+      <button id="playAgain" class="btn btn-gold" type="button">Play again</button>
+    </div>
+  </div>
+
+  <script src="/game.js"></script>
 </body>
 </html>
