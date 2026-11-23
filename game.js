@@ -25,7 +25,7 @@
   const BEST_KEY = 'championshipMemoryMatch.best';
   const gameMusic = new Audio(GAME_MUSIC_SRC);
   gameMusic.loop = true;
-  gameMusic.volume = 0.45;
+  gameMusic.volume = 0.2;
 
   const board = document.getElementById('board');
   const timeEl = document.getElementById('time');
