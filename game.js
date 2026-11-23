@@ -8,6 +8,7 @@
 
   // ---------- CONFIG: edit these paths ----------
   const LOGO_SRC = 'assets/logo.png';
+  const GAME_MUSIC_SRC = 'sounds/_Balad Ayni - بقيادة المايسترو د.مبارك نجم.mp4';
 
   const CARDS = [
     { name: 'Saheel',                  img: 'assets/saheel.png',    emoji: '🐴' },
@@ -24,6 +25,9 @@
   const PAIRS = CARDS.length;
   const MISMATCH_DELAY = 700;
   const BEST_KEY = 'championshipMemoryMatch.best';
+  const gameMusic = new Audio(GAME_MUSIC_SRC);
+  gameMusic.loop = true;
+  gameMusic.volume = 0.45;
 
   const board = document.getElementById('board');
   const timeEl = document.getElementById('time');
@@ -44,6 +48,30 @@
   let startTime = null;
   let timerId = null;
   let elapsed = 0;
+  let musicGeneration = 0;
+  let musicRequested = false;
+
+  function playMusicFromMiddle() {
+    musicRequested = true;
+    const generation = musicGeneration;
+    const start = () => {
+      if (!musicRequested || generation !== musicGeneration) return;
+      gameMusic.currentTime = gameMusic.duration / 2;
+      gameMusic.play().catch(() => {});
+    };
+
+    if (gameMusic.readyState >= 1) {
+      start();
+    } else {
+      gameMusic.addEventListener('loadedmetadata', start, { once: true });
+    }
+  }
+
+  function stopMusic() {
+    musicRequested = false;
+    musicGeneration++;
+    gameMusic.pause();
+  }
 
   // Logo setup, with fallbacks if the file is missing
   const logo = document.getElementById('logo');
@@ -169,7 +197,10 @@
     if (locked) return;
     if (cardEl.classList.contains('flipped') || cardEl.classList.contains('matched')) return;
 
-    if (startTime === null) startTimer();
+    if (startTime === null) {
+      startTimer();
+      playMusicFromMiddle();
+    }
 
     cardEl.classList.add('flipped');
     cardEl.setAttribute('aria-label', cardEl.dataset.name + ', face up');
@@ -224,6 +255,7 @@
 
   function finishGame() {
     stopTimer();
+    stopMusic();
     const score = calcScore(elapsed, attempts);
     const best = loadBest();
     const isNewBest = !best || score > best.score;
@@ -246,6 +278,7 @@
 
   function newGame() {
     stopTimer();
+    stopMusic();
     startTime = null;
     elapsed = 0;
     firstCard = null;
