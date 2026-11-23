@@ -9,6 +9,7 @@
   // ---------- CONFIG: edit these paths ----------
   const LOGO_SRC = 'assets/logo.png';
   const GAME_MUSIC_SRC = 'sounds/balad-ayni.mp4';
+  const GAME_MUSIC_MIDPOINT = 140.1;
 
   const CARDS = [
     { name: 'Saheel',                  img: 'assets/saheel.png',    emoji: '🐴' },
@@ -24,6 +25,7 @@
   const MISMATCH_DELAY = 700;
   const BEST_KEY = 'championshipMemoryMatch.best';
   const gameMusic = new Audio(GAME_MUSIC_SRC);
+  gameMusic.preload = 'auto';
   gameMusic.loop = true;
   gameMusic.volume = 0.2;
 
@@ -46,28 +48,12 @@
   let startTime = null;
   let timerId = null;
   let elapsed = 0;
-  let musicGeneration = 0;
-  let musicRequested = false;
-
   function playMusicFromMiddle() {
-    musicRequested = true;
-    const generation = musicGeneration;
-    const start = () => {
-      if (!musicRequested || generation !== musicGeneration) return;
-      gameMusic.currentTime = gameMusic.duration / 2;
-      gameMusic.play().catch(() => {});
-    };
-
-    if (gameMusic.readyState >= 1) {
-      start();
-    } else {
-      gameMusic.addEventListener('loadedmetadata', start, { once: true });
-    }
+    gameMusic.currentTime = GAME_MUSIC_MIDPOINT;
+    gameMusic.play().catch(() => {});
   }
 
   function stopMusic() {
-    musicRequested = false;
-    musicGeneration++;
     gameMusic.pause();
   }
 
