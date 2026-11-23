@@ -13,11 +13,11 @@
 
   const CARDS = [
     { name: 'Saheel',                  img: 'assets/saheel.png',    emoji: '🐴' },
-    { name: 'Water bottle',            img: 'assets/water.png',     emoji: '💧' },
+    { name: 'Red bottle',            img: 'assets/water.png',     emoji: '💧' },
     { name: 'Bahrain pin',             img: 'assets/pin.png',       emoji: '📍' },
-    { name: 'BPC emblem',              img: 'assets/bpclogo.png',   emoji: '🔥' },
-    { name: 'World Para Powerlifting', img: 'assets/WORLD.png',     emoji: '🏋️' },
-    { name: 'Bahrain branding',        img: 'assets/branding.png', emoji: '🇧🇭' }
+    { name: 'Keychain',              img: 'assets/keychain.png',   emoji: '🔥' },
+    { name: 'Blue bottle', img: 'assets/blue.png',     emoji: '🏋️' },
+    { name: 'Trophy',        img: 'assets/Trophy.png', emoji: '🇧🇭' }
   ];
   // ----------------------------------------------
 
