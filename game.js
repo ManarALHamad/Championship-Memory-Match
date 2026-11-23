@@ -8,7 +8,7 @@
 
   // ---------- CONFIG: edit these paths ----------
   const LOGO_SRC = 'assets/logo.png';
-  const GAME_MUSIC_SRC = 'sounds/_Balad Ayni - بقيادة المايسترو د.مبارك نجم.mp4';
+  const GAME_MUSIC_SRC = 'sounds/balad-ayni.mp4';
 
   const CARDS = [
     { name: 'Saheel',                  img: 'assets/saheel.png',    emoji: '🐴' },
